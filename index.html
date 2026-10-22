@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" content="Dashboard executivo KA de controle orçamentário: custos previstos e realizados, desvios mensais, filtros interativos e temas claro/escuro. Dados demonstrativos fictícios." />
+<title>KA | Painel Executivo de Orçamento — Demo</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="shell">
+  <aside class="side" aria-label="Navegação principal">
+    <div class="identity"><div class="brand"><div class="monogram" aria-label="Iniciais KA">KA</div><div><div class="brand-name">Kelton Almeida</div><div class="brand-sub">Gestão empresarial</div></div></div></div>
+    <div><div class="menu-h">WORKSPACE</div><nav class="nav">
+      <a class="current" href="#overview"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Visão executiva</a>
+      <a href="#trend"><svg viewBox="0 0 24 24"><path d="M3 16l6-6 4 4 8-9"/><path d="M16 5h5v5"/></svg>Evolução mensal</a>
+      <a href="#variance"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15v-5M13 15V7M18 15V9"/></svg>Análise de desvios</a>
+      <a href="#details"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 11h16M4 17h16"/></svg>Demonstrativo</a>
+      <a href="#privacy"><svg viewBox="0 0 24 24"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>Governança</a>
+    </nav></div>
+    <div class="side-bottom"><div class="secure-label"><span aria-hidden="true">◈</span> Privacidade por design</div><p>Os dados permanecem neste arquivo. Sem conexão externa, cookies ou rastreamento. Acesso e distribuição devem ser controlados.</p></div>
+  </aside>
+  <main class="main" id="overview">
+    <div class="topbar"><div><div class="eyebrow">Finance Intelligence / 2026</div><h1>Controle orçamentário</h1><p class="lead">Indicadores executivos de custos, aderência ao orçamento e monitoramento de desvios.</p></div>
+      <div class="actions"><button id="themeBtn" class="button" type="button" aria-label="Alternar entre modo claro e escuro"><svg class="moon" viewBox="0 0 24 24"><path d="M20 15.7A8.5 8.5 0 0 1 8.3 4 8.5 8.5 0 1 0 20 15.7Z"/></svg><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span id="themeText">Modo escuro</span></button><button id="printBtn" class="button" type="button"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4V9h16v9h-2M6 14h12v7H6z"/></svg>Imprimir / PDF</button><button id="exportBtn" class="button primary" type="button"><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg>Exportar CSV</button></div>
+    </div>
+    <div class="banner"><div class="banner-left"><div class="year-mark">2026</div><div><strong>Visão consolidada de despesas</strong><p>Fonte: simulação para portfólio &nbsp;•&nbsp; 6 centros de custo &nbsp;•&nbsp; 8 categorias &nbsp;•&nbsp; dados de demonstração</p></div></div><span id="scopeBadge" class="banner-pill">JAN–SET | DEMONSTRAÇÃO</span></div>
+    <div id="futureWarning" class="warning" role="status"><span style="font-size:18px" aria-hidden="true">⚠</span><div><strong>Atenção ao período selecionado</strong><span>Este painel utiliza números inteiramente fictícios para fins de portfólio, e não representa despesas reais de uma empresa.</span></div></div>
+    <section class="filters" aria-label="Filtros do painel">
+      <div class="f"><label for="start">De</label><select id="start"></select></div><div class="f"><label for="end">Até</label><select id="end"></select></div><div class="f"><label for="center">Centro de custo</label><select id="center"></select></div><div class="f"><label for="category">Categoria de despesa</label><select id="category"></select></div><button class="button" id="resetBtn" type="button">↺&nbsp; Restaurar filtros</button>
+    </section>
+    <section class="kpis" aria-label="Indicadores principais">
+      <article class="card kpi"><div class="kpi-head">Orçamento previsto<span class="tinyicon" aria-hidden="true">∑</span></div><div class="value" id="kBudget">–</div><div class="foot"><span>Planejamento do período</span><span class="tag neutral" id="kBudgetFoot">—</span></div></article>
+      <article class="card kpi"><div class="kpi-head">Custos realizados<span class="tinyicon" aria-hidden="true">▥</span></div><div class="value" id="kActual">–</div><div class="foot"><span>Dados simulados</span><span class="tag neutral" id="kActualFoot">—</span></div></article>
+      <article class="card kpi emphasis"><div class="kpi-head">Desvio em R$<span class="tinyicon" aria-hidden="true">↕</span></div><div class="value" id="kDelta">–</div><div class="foot"><span>Realizado − Orçado</span><span class="tag" id="kDeltaFoot">—</span></div></article>
+      <article class="card kpi"><div class="kpi-head">Desvio percentual<span class="tinyicon" aria-hidden="true">%</span></div><div class="value" id="kPct">–</div><div class="foot"><span>Sobre o orçamento</span><span class="tag" id="kPctFoot">—</span></div></article>
+    </section>
+    <section class="section" id="trend">
+      <article class="card panel"><div class="phead"><div><h2>Evolução de custos</h2><p>Previsto × realizado por mês • R$ mil</p></div><div class="legend"><span><i class="dot b"></i>Orçado</span><span><i class="dot a"></i>Realizado</span></div></div><div class="chart" id="monthlyChart" role="img" aria-label="Gráfico comparativo de custos orçados e realizados por mês"></div></article>
+      <article class="card panel"><div class="phead"><div><h2>Composição das despesas</h2><p>Participação por centro de custo</p></div><div class="context" id="donutContext">Realizado</div></div><div class="donut-flex"><div class="donut" id="donut"><div class="donut-inside"><strong id="donutTotal">—</strong><span>REALIZADO</span></div></div><div class="dist-list" id="donutList"></div></div></article>
+    </section>
+    <section class="section equal" id="variance">
+      <article class="card panel"><div class="phead"><div><h2>Desvios mensais</h2><p>Valores acima de zero indicam estouro de orçamento</p></div><div class="context">R$ mil</div></div><div class="chart" id="deltaChart" role="img" aria-label="Gráfico mensal dos desvios positivos e negativos"></div></article>
+      <article class="card panel"><div class="phead"><div><h2>Principais pressões orçamentárias</h2><p>Categorias com maior desvio positivo</p></div><div class="context">Por categoria</div></div><div class="risk-list" id="riskList"></div></article>
+    </section>
+    <section class="card panel" style="margin-bottom:18px"><div class="phead"><div><h2>Leituras para decisão</h2><p>Observações calculadas a partir dos filtros ativos, sem inferir causas não documentadas</p></div><div class="context">Análise automática</div></div><div class="analyses" id="insights"></div></section>
+    <section class="card panel" id="details"><div class="phead"><div><h2>Demonstrativo analítico</h2><p>Detalhamento agregado, sem nomes de fornecedores ou descrições de transações</p></div><div class="table-controls"><div class="tabs" role="group" aria-label="Agrupamento da tabela"><button type="button" id="tabCenter" class="active">Por centro</button><button type="button" id="tabCategory">Por categoria</button></div></div></div><div class="table-wrap"><table aria-label="Demonstrativo orçado versus realizado"><thead><tr><th id="groupLabel">Centro de custo</th><th>Orçado</th><th>Realizado</th><th>Desvio R$</th><th>Desvio %</th><th>Execução</th></tr></thead><tbody id="dataRows"></tbody><tfoot id="dataFoot"></tfoot></table></div></section>
+    <footer class="footnote" id="privacy"><div class="footer-left"><strong>Privacidade e governança (LGPD).</strong> Demonstração pública com dados 100% fictícios, sem informações pessoais ou financeiras da planilha original. Sem cookies, rastreadores ou bibliotecas externas. Em produção, a adequação à LGPD também exige avaliação de riscos e controles organizacionais. <strong>Dados fictícios • Portfólio.</strong></div><div><strong>Metodologia</strong><div>Desvio (R$) = Realizado − Orçado<br>Desvio (%) = Desvio ÷ Orçado × 100<br>Para custos: positivo = desfavorável; negativo = favorável.<br>Exemplo ilustrativo de 2026 • Valores fictícios em BRL</div></div></footer>
+  </main>
+</div>
+<script src="app.js" defer></script>
+</body>
+</html>
