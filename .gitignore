@@ -1,0 +1,8 @@
+# Arquivos reais e sensíveis: nunca publicar
+*.xlsx
+*.xls
+*.csv
+.env
+.env.*
+node_modules/
+.DS_Store
